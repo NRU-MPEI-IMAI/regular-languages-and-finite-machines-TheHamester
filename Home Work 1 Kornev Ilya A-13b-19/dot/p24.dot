@@ -1,0 +1,23 @@
+digraph {
+	rankdir=LR;
+	margin=0;
+	size=3;
+	node[shape=circle margin=0]
+	AD,AE,BE,BC,BD[shape=doublecircle];
+	" "[color=white];
+
+	" " -> AC;
+	AC -> AD[label=b];
+	AC -> BC[label=a];
+	AD -> AE[label=b];
+	AD -> BD[label=a];
+	AE -> AC[label=b];
+	AE -> BE[label=a];
+	BC -> AC[label=a];
+	BC -> BD[label=b];
+	BD -> AD[label=a];
+	BD -> BE[label=b];
+	BE -> BC[label=b];
+	BE -> AE[label=a];
+	
+}

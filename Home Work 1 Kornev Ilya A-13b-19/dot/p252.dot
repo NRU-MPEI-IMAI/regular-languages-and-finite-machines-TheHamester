@@ -1,0 +1,23 @@
+digraph {
+	rankdir=LR;
+	margin=0;
+	size=3;
+	node[shape=circle margin=0]
+	G,H,I,K[shape=doublecircle];
+	" "[color=white];
+
+	" " -> F;
+	F -> G[label=b];
+	F -> I[label=a];
+	G -> H[label=b];
+	G -> K[label=a];
+	H -> F[label=b];
+	H -> J[label=a];
+	I -> F[label=a];
+	I -> K[label=b];
+	K -> G[label=a];
+	K -> J[label=b];
+	J -> I[label=b];
+	J -> H[label=a];
+	
+}

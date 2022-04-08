@@ -1,0 +1,28 @@
+digraph {
+	size = 5;
+	rankdir=LR;
+	margin = 0.05;
+	node[shape=circle];
+	CF[shape=doublecircle];
+	" "[color=white width=0];
+
+	" " -> AD;
+	AD -> AE[label=b];
+	AD -> BD[label=a];
+	AE -> AF[label=b];
+	AE -> BE[label=a];
+	AF -> AF[label=b];
+	AF -> BF[label=a];
+	BD -> BE[label=b];
+	BD -> CD[label=a];
+	BE -> BF[label=b];
+	BE -> CE[label=a];
+	BF -> BF[label=b];
+	BF -> CF[label=a];
+	CD -> CD[label=a];
+	CD -> CE[label=b];
+	CE -> CE[label=a];
+	CE -> CF[label=b];
+	CF -> CF[label="a,b"];
+	
+}

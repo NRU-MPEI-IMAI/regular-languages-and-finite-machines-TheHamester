@@ -1,0 +1,83 @@
+digraph {
+	rankdir=LR;
+	node[margin=0 shape=circle];
+	size=6;
+	margin=0;
+	EG[shape=doublecircle];
+	EH[shape=doublecircle];
+	EI[shape=doublecircle];
+	EK[shape=doublecircle];
+	EJ[shape=doublecircle];
+	" "[color=white];
+
+	" "->AF;
+	AF->BI[label=a];
+	AF->BG[label=b];
+	AG->BK[label=a];
+	AG->BH[label=b];
+	AH->BJ[label=a];
+	AH->BF[label=b];
+	AI->BF[label=a];
+	AI->BK[label=b];
+	AK->BG[label=a];
+	AK->BJ[label=b];
+	AJ->BH[label=a];
+	AJ->BI[label=b];
+	
+	BF->CI[label=a];
+	BF->CG[label=b];
+	BG->CK[label=a];
+	BG->CH[label=b];
+	BH->CJ[label=a];
+	BH->CF[label=b];
+	BI->CF[label=a];
+	BI->CK[label=b];
+	BK->CG[label=a];
+	BK->CJ[label=b];
+	BJ->CH[label=a];
+	BJ->CI[label=b];
+	
+	CF->DI[label=a];
+	CF->DG[label=b];
+	CG->DK[label=a];
+	CG->DH[label=b];
+	CH->DJ[label=a];
+	CH->DF[label=b];
+	CI->DF[label=a];
+	CI->DK[label=b];
+	CK->DG[label=a];
+	CK->DJ[label=b];
+	CJ->DH[label=a];
+	CJ->DI[label=b];
+	
+	DF->EI[label=a];
+	DF->EG[label=b];
+	DG->EK[label=a];
+	DG->EH[label=b];
+	DH->EJ[label=a];
+	DH->EF[label=b];
+	DI->EF[label=a];
+	DI->EK[label=b];
+	DK->EG[label=a];
+	DK->EJ[label=b];
+	DJ->EH[label=a];
+	DJ->EI[label=b];
+	
+	EF->DI[label=a];
+	EF->DG[label=b];
+	EG->DK[label=a];
+	EG->DH[label=b];
+	EH->DJ[label=a];
+	EH->DF[label=b];
+	EI->DF[label=a];
+	EI->DK[label=b];
+	EK->DG[label=a];
+	EK->DJ[label=b];
+	EJ->DH[label=a];
+	EJ->DI[label=b];
+	
+	
+	
+
+
+}

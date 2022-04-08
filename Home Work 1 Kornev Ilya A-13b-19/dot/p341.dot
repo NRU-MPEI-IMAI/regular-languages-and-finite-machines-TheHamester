@@ -1,0 +1,23 @@
+digraph {
+	rankdir=LR;
+	margin=0;
+	size=5;
+	node[shape=circle margin=0]
+	2[shape=doublecircle];
+	" "[color=white];
+
+	" " -> 1;
+	1 -> 2[label="b,c"];
+	2 -> 3[label=λ];
+	2 -> 7[label=λ];
+	3 -> 4[label=a];
+	3 -> 5[label=λ];
+	4 -> 5[label=b];
+	5 -> 3[label=λ];
+	5 -> 6[label=c];
+	6 -> 2[label=λ];
+	7 -> 8[label=b];
+	7 -> 9[label=λ];
+	8 -> 9[label=a];
+	9 -> 2[label=λ];
+}

@@ -1,0 +1,421 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage[pdf]{graphviz}
+\usepackage{morewrites}
+
+\begin{document}
+	\title{Домашняя работа по ТМВ №1}
+	\author{Корнев Илья А-13б-19}
+	\date{}
+	\maketitle
+	\setlength{\footskip}{60pt}
+	\section*{Задание 1. Построить конечный автомат, распознающий язык}
+	$\boldsymbol{1.\ L_1 =\left\{\omega \in \left\{a,b,c\right\}^* \vert |\omega|_c = 1 \right\}}$\\
+	\begin{center}
+		\digraph{dot/p11}
+	\end{center}
+	$\boldsymbol{2.\ L_2 =\left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a \leq 2, |\omega|_b \geq 2 \right\}}$\\
+	\begin{center}
+		\digraph{dot/p12}
+	\end{center}
+		$\boldsymbol{3.\ L_3 =\left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a \neq |\omega|_b \right\}}$\\
+		Докажем, что данный язык не является регулярным:\\
+		Рассмотрим дополнение к языку $\boldsymbol{\overline{L_3}=\left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a = |\omega|_b \right\}}$\\
+		Фиксируем произвольное $\boldsymbol{n}$\\
+		Выберем $\boldsymbol{\omega=a^nb^n \in \overline{L}}$\\
+		Выберем разбиение слова $\boldsymbol{\omega}$\\
+		$x=a^{n-1}$\\
+		$y=a$\\
+		$z=b^n$\\
+		$\boldsymbol{xy^kz \notin \overline{L} \implies \overline{L}} - $ не является регулярным $\boldsymbol{\implies L} - $ не является регулярным, следовательно не существует ДКА, распознающий язык $L$\\
+
+	$\boldsymbol{4.\ L_4 =\left\{\omega \in \left\{a,b\right\}^* \vert \omega\omega = \omega\omega\omega \right\}}$\\
+	Единственное слово, в языке $\boldsymbol{L}$ это пустое слово $\boldsymbol{\lambda}$
+	\begin{center}
+		\digraph{dot/p14}
+	\end{center}
+	\section*{Задание 2. Построить конечный автомат, используя прямоу произведение}
+	$\boldsymbol{1.\ L_1 = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a \geq 2 \wedge |\omega|_b \geq 2 \right\}}$\\
+	\indent Автомат который распознает язык $L_{11} = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a \geq 2 \right\}$:\\
+	\begin{center}
+		\digraph{dot/p211}
+	\end{center}
+	\indent\indent Автомат который распознает язык $L_{12} = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_b \geq 2 \right\}$:\\
+	\begin{center}
+		\digraph{dot/p212}
+	\end{center}
+	\indent Построим прямое произведение этих автоматов:\\
+	\indent$\Sigma=\{a,b\};$\\
+	\indent$Q=\{AD,AE,AF,BD,BE,BF,CD,CE,CF\};$\\
+	\indent$s=AD;$\\
+	\indent$T=\{CF\};$\\
+	Функции переходов:\\
+	$
+	\indent\delta\left(AD,a\right)=BD;\delta\left(AD,b\right)=AE;\delta\left(AE,a\right)=BE;\delta\left(AE,b\right)=AF;\\
+	\indent\delta\left(AF,a\right)=BF;\delta\left(AF,b\right)=AF;\delta\left(BD,a\right)=CD;\delta\left(BD,b\right)=BE;\\
+	\indent\delta\left(BE,a\right)=CE;\delta\left(BE,b\right)=BF;\delta\left(BF,a\right)=CF;\delta\left(BF,b\right)=BF;\\
+	\indent\delta\left(CD,a\right)=CD;\delta\left(CD,b\right)=CE;\delta\left(CE,a\right)=CE;\delta\left(CE,b\right)=CF;\\
+	\indent\delta\left(CF,a\right)=CF;\delta\left(CF,b\right)=CF;\\
+	$
+	\begin{center}
+		\digraph{dot/p21}
+	\end{center}
+	$\boldsymbol{2.\ L_2 = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega| \geq 3 \wedge |\omega| \textup{ нечётное} \right\}}$\\
+	\indent Автомат который распознает язык $L_{21} = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega| \geq 3 \right\}$:\\
+	\begin{center}
+		\digraph{dot/p221}
+	\end{center}
+	\indent\indent Автомат который распознает язык $L_{22} = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega| \textup{ нечётное} \right\}$:\\
+	\begin{center}
+		\digraph{dot/p222}
+	\end{center}
+	\indent Построим прямое произведение этих автоматов:\\
+	\indent$\Sigma=\{a,b\};$\\
+	\indent$Q=\{AE,AF,AG,BE,BF,BG,CE,CF,CG,DE,DF,DG\}$\\
+	\indent$s=AE$\\
+	\indent$T=\{DF\}$\\
+	Функции переходов:\\
+	$
+	\indent\delta\left(AE,a\right)=BF;\delta\left(AE,b\right)=BF;\delta\left(AF,a\right)=BG;\delta\left(AF,b\right)=BG;\\
+	\indent\delta\left(AG,a\right)=BF;\delta\left(AG,b\right)=BF;\delta\left(BE,a\right)=CF;\delta\left(BE,b\right)=CF;\\
+	\indent\delta\left(BF,a\right)=CG;\delta\left(BF,b\right)=CG;\delta\left(BG,a\right)=CF;\delta\left(BG,b\right)=CF;\\
+	\indent\delta\left(CE,a\right)=DF;\delta\left(CE,b\right)=DF;\delta\left(CF,a\right)=DG;\delta\left(CF,b\right)=DG;\\
+	\indent\delta\left(CG,a\right)=DF;\delta\left(CG,b\right)=DF;\delta\left(DE,a\right)=DF;\delta\left(DE,b\right)=DF;\\
+	\indent\delta\left(DF,a\right)=DG;\delta\left(DF,b\right)=DG;\delta\left(DG,a\right)=DF;\delta\left(DG,b\right)=DF;\\
+	$
+	\begin{center}
+		\digraph{dot/p22}
+	\end{center}
+	\indent Уберем лишние вершины:\\
+	\begin{center}
+		\digraph{dot/p22f}
+	\end{center}
+	$\boldsymbol{3.\ L_3 = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a \textup{ чётно} \wedge |\omega|_b \textup{ кратно трём} \right\}}$\\
+	\indent Автомат который распознает язык $L_{31} = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_a \textup{ чётно} \right\}$:\\
+	\begin{center}
+		\digraph{dot/p231}
+	\end{center}
+	\indent\indent Автомат который распознает язык $L_{32} = \left\{\omega \in \left\{a,b\right\}^* \vert |\omega|_b \textup{ кратно трём} \right\}$:\\
+	\begin{center}
+		\digraph{dot/p232}
+	\end{center}
+	\indent Построим прямое произведение этих автоматов:\\
+	\indent$\Sigma=\{a,b\};$\\
+	\indent$Q=\{AC,AD,AE,BC,BD,BE\}$\\
+	\indent$s=AC$\\
+	\indent$T=\{AC\}$\\
+	Функции переходов:\\
+	$
+	\indent\delta\left(AC,a\right)=BC;\delta\left(AC,b\right)=AD;\delta\left(AD,a\right)=BD;\delta\left(AD,b\right)=AE;\\
+	\indent\delta\left(AE,a\right)=BE;\delta\left(AE,b\right)=AC;\delta\left(BC,a\right)=AC;\delta\left(BC,b\right)=BD;\\
+	\indent\delta\left(BD,a\right)=AD;\delta\left(BD,b\right)=BE;\delta\left(BE,a\right)=AE;\delta\left(BE,b\right)=BC;\\
+	$
+	\begin{center}
+		\digraph{dot/p23}
+	\end{center}
+	$\boldsymbol{4.\ L_4 = \overline{L_3}}$\\
+	\indent\indent$\overline{L_3} = \{\Sigma_{L_3}, Q_{L_3},s_{L_3},Q_{L_3} \setminus T_{L_3}, \delta_{L_3}\}$\\
+	\begin{center}
+		\digraph{dot/p24}
+	\end{center}
+	$\boldsymbol{5.\ L_5 = L_2 \setminus L_3}$\\
+	$L_2 \setminus L_3 = L_2\overline{L_3}$\\
+	Первый автомат:\\
+	\begin{center}
+		\digraph{dot/p251}
+	\end{center}
+	Второй автомат:\\
+	\begin{center}
+		\digraph{dot/p252}
+	\end{center}
+	\indent Построим прямое произведение этих автоматов:\\
+	\indent$\Sigma=\{a,b\};$\\
+	\indent$Q=\{AF,AG,AH,AI,AK,AJ,BF,BG,BH,BI,BK,BJ,\\CF,CG,CH,CI,CK,CJ,DF,DG,DH,DI,DK,DJ,EF,EG,EH,EI,EK,EJ\}$\\
+	\indent$s=AF$\\
+	\indent$T=\{EG,EH,EI,EK,EJ\}$\\
+	Функции переходов:\\
+	$
+	\indent\delta\left(AF,a\right)=BI;\delta\left(AF,b\right)=BG;\delta\left(AG,a\right)=BK;\delta\left(AG,b\right)=BH;\\
+	\indent\delta\left(AH,a\right)=BJ;\delta\left(AH,b\right)=BF;\delta\left(AI,a\right)=BF;\delta\left(AI,b\right)=BK;\\
+	\indent\delta\left(AK,a\right)=BG;\delta\left(AK,b\right)=BJ;\delta\left(AJ,a\right)=BH;\delta\left(AJ,b\right)=BI;\\
+	\indent\delta\left(BF,a\right)=CI;\delta\left(BF,b\right)=CG;\delta\left(BG,a\right)=CK;\delta\left(BG,b\right)=CH;\\
+	\indent\delta\left(BH,a\right)=CJ;\delta\left(BH,b\right)=CF;\delta\left(BI,a\right)=CF;\delta\left(BI,b\right)=CK;\\
+	\indent\delta\left(BK,a\right)=CG;\delta\left(BK,b\right)=CJ;\delta\left(BJ,a\right)=CH;\delta\left(BJ,b\right)=CI;\\
+	\indent\delta\left(CF,a\right)=DI;\delta\left(CF,b\right)=DG;\delta\left(CG,a\right)=DK;\delta\left(CG,b\right)=DH;\\
+	\indent\delta\left(CH,a\right)=DJ;\delta\left(CH,b\right)=DF;\delta\left(CI,a\right)=DF;\delta\left(CI,b\right)=DK;\\
+	\indent\delta\left(CK,a\right)=DG;\delta\left(CK,b\right)=DJ;\delta\left(CJ,a\right)=DH;\delta\left(CJ,b\right)=DI;\\
+	\indent\delta\left(DF,a\right)=EI;\delta\left(DF,b\right)=EG;\delta\left(DG,a\right)=EK;\delta\left(DG,b\right)=EH;\\
+	\indent\delta\left(DH,a\right)=EJ;\delta\left(DH,b\right)=EF;\delta\left(DI,a\right)=EF;\delta\left(DI,b\right)=EK;\\
+	\indent\delta\left(DK,a\right)=EG;\delta\left(DK,b\right)=EJ;\delta\left(DJ,a\right)=EH;\delta\left(DJ,b\right)=EI;\\
+	\indent\delta\left(EF,a\right)=DI;\delta\left(EF,b\right)=DG;\delta\left(EG,a\right)=DK;\delta\left(EG,b\right)=DH;\\
+	\indent\delta\left(EH,a\right)=DJ;\delta\left(EH,b\right)=DF;\delta\left(EI,a\right)=DF;\delta\left(EI,b\right)=DK;\\
+	\indent\delta\left(EK,a\right)=DG;\delta\left(EK,b\right)=DJ;\delta\left(EJ,a\right)=DH;\delta\left(EJ,b\right)=DI;\\
+	$
+	\begin{center}
+		\digraph{dot/p25}
+	\end{center}
+	
+	\section*{Задание 3. Построить минимальный ДКА по регулярному выражению}
+	$\boldsymbol{1.\ (ab+aba)^*a}$ \\
+	Построим НКА по регулярному выражению: 
+	\begin{center}
+		\digraph{dot/p311}
+	\end{center}
+	Построим эквивалентный ему ДКА: 
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$\ $ & $a$ & $b$ \\
+		\hline
+		$1$ & $\{3,6,10\}$ & $\emptyset$ \\
+		\hline
+		$\{3,6,10\}$ & $\emptyset$ & $\{1,7\}$ \\
+		\hline
+		$\{1,7\}$ & $\{1,3,6,10\}$ & $\emptyset$ \\
+		\hline
+		$\{1,3,6,10\}$ & $\{3,6,10\}$ & $\{1,7\}$ \\
+		\hline
+		\end{tabular}
+		
+		\digraph{dot/p312}
+	\end{center}
+	Минимизируем ДКА: \\
+	0 эквивалентность: $\{1,\{1,7\}\}\ \{\{3,6,10\},\{1,3,6,10\}\}$ \\
+	1 эквивалентность: $\{1,\{1,7\}\}\ \{\{3,6,10\}\}\ \{\{1,3,6,10\}\}$ \\
+	2 эквивалентность: $\{1\}\{\{1,7\}\}\ \{\{3,6,10\}\}\ \{\{1,3,6,10\}\}$ \\
+	
+	Исходный автомат являлся минимальным. \\
+	
+	$\boldsymbol{2.\ a(a(ab)^*b)^*(ab)^*}$ \\
+	Построим НКА по регулярному выражению: 
+	\begin{center}
+		\digraph{dot/p321}
+	\end{center}
+	Построим эквивалентный ему ДКА:
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$\ $ & $a$ & $b$ \\
+		\hline
+		$1$ & $2$ & $\emptyset$ \\
+		\hline
+		$2$ & $\{3,7\}$ & $\emptyset$ \\
+		\hline
+		$\{3,7\}$ & $4$ & $\{6,8\}$ \\
+		\hline
+		$4$ & $\emptyset$ & $5$ \\
+		\hline
+		$6$ & $\{3,7\}$ & $\emptyset$ \\
+		\hline
+		$5$ & $4$ & $6$ \\
+		\hline
+		$\{6,8\}$ & $\{3,7\}$ & $\emptyset$ \\
+		\hline
+		\end{tabular}
+		
+		\digraph{dot/p322}
+	\end{center}
+	Минимизируем ДКА: \\
+	0 эквивалентность: $\{1,\{3,7\},4,5\}\ \{2,6,\{6,8\}\}$ \\
+	1 эквивалентность: $\{1\}\ \{\{3,7\},5\}\ \{4\}\ \{2,6,\{6,8\}\}$ \\
+	2 эквивалентность: $\{1\}\ \{\{3,7\},5\}\ \{4\}\ \{2,6,\{6,8\}\}$ \\
+	$$\{1\}=A;\ \{\{3,7\},5\}=B;\ \{4\}=C;\ \{2,6,\{6,8\}\}=D;$$
+	\begin{center}
+		\digraph{dot/p323}
+	\end{center}
+	$\boldsymbol{3.\ (a+(a+b)(a+b)b)^*}$ \\
+	Построим НКА по регулярному выражению:
+	\begin{center}
+		\digraph{dot/p331}
+	\end{center}
+	Построим эквивалентный ему ДКА:
+		\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$\ $ & $a$ & $b$ \\
+		\hline
+		$1$ & $\{1,5\}$ & $5$ \\
+		\hline
+		$\{1,5\}$ & $\{1,5,6\}$ & $\{5,6\}$ \\	
+		\hline
+		$5$ & $6$ & $6$ \\	
+		\hline
+		$\{1,5,6\}$ & $\{1,5,6\}$ & $\{1,5,6\}$ \\	
+		\hline
+		$\{5,6\}$ & $6$ & $\{1,6\}$ \\
+		\hline
+		$\{1,6\}$ & $\{1,5\}$ & $\{1,5\}$ \\	
+		\hline	
+		\end{tabular}
+		
+		\digraph{dot/p332}
+	\end{center}
+	Минимизируем ДКА: \\
+	0 эквивалентность: $\{5,6,\{5,6\}\}\ \{1,\{1,5\},\{1,5,6\},\{1,6\}\}$ \\
+	1 эквивалентность: $\{6,\{5,6\}\}\ \{5\}\ \{1\}\ \{\{1,5\}\}\ \{\{1,5,6\},\{1,6\}\}$ \\
+	2 эквивалентность: $\{6\}\ \{\{5,6\}\}\ \{5\}\ \{1\}\ \{\{1,5\}\}\ \{\{1,5,6\}\}\ \{\{1,6\}\}$ \\
+	$$\{6\}=A;\ \{\{5,6\}\}=B;\ \{5\}=C;\ \{1\}=D;\ \{\{1,5\}\}=E;\ \{\{1,5,6\}\}=F;\ \{\{1,6\}\}=G;$$
+	
+	Исходный автомат являлся минимальным. \\
+	
+	$\boldsymbol{4.\ (b+c)((ab)^*c+(ba)^*)^*}$ \\
+	Построим НКА по регулярному выражению:
+	\begin{center}
+		\digraph{dot/p341}
+	\end{center}
+	Построим эквивалентный ему ДКА:
+		\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+		\hline
+		$\ $ & $a$ & $b$ & $c$ \\
+		\hline
+		$1$ & $\emptyset$ & $2$ & $2$ \\
+		\hline
+		$2$ & $4$ & $8$ & $2$ \\
+		\hline
+		$4$ & $\emptyset$ & $5$ & $\emptyset$ \\
+		\hline
+		$8$ & $2$ & $\emptyset$ & $\emptyset$ \\
+		\hline
+		$5$ & $4$ & $\emptyset$ & $2$\\
+		\hline
+		\end{tabular}
+		
+		\digraph{dot/p342}
+	\end{center}
+	Минимизируем ДКА: \\
+	0 эквивалентность: $\{1,4,5,8\}\ \{2\}$ \\
+	1 эквивалентность: $\{1\}\ \{4\}\ \{8\}\ \{5\}\ \{2\}\ $ \\
+	
+	Исходный автомат являлся минимальным. \\
+	
+	$\boldsymbol{5.\ (a+b)^+(aa+bb+abab+baba)(a+b)^+}$ \\
+	Построим НКА по регулярному выражению:
+	\begin{center}
+		\digraph{dot/p351}
+	\end{center}
+	$\\\\\\\\\\$ 
+	Построим эквивалентный ему ДКА:
+		\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$\ $ & $a$ & $b$ \\
+		\hline
+		$1$ & $2$ & $2$ \\
+		\hline
+		$2$ & $\{2,4\}$ & $\{2,9\}$ \\
+		\hline
+		$\{2,4\}$ & $\{2,4,7\}$ & $\{2,5,9\}$ \\
+		\hline
+		$\{2,9\}$ & $\{2,4,10\}$ & $\{2,9,12\}$ \\
+		\hline
+		$\{2,4,7\}$ & $\{2,4,7,14\}$ & $\{2,5,9,14\}$ \\
+		\hline
+		$\{2,5,9\}$ & $\{2,4,6,10\}$ & $\{2,9,12\}$ \\
+		\hline
+		$\{2,4,10\}$ & $\{2,4,7\}$ & $\{2,5,9,11\}$ \\
+		\hline
+		$\{2,9,12\}$ & $\{2,4,10,14\}$ & $\{2,9,12,14\}$ \\
+		\hline
+		$\{2,4,7,14\}$ & $\{2,4,7,14\}$ & $\{2,5,9,14\}$ \\
+		\hline
+		$\{2,5,9,14\}$ & $\{2,4,6,10,14\}$ & $\{2,9,12,14\}$ \\
+		\hline
+		$\{2,4,10,14\}$ & $\{2,4,7,14\}$ & $\{2,5,9,11,14\}$ \\
+		\hline
+		$\{2,9,12,14\}$ & $\{2,4,10,14\}$ & $\{2,9,12,14\}$ \\
+		\hline
+		$\{2,4,6,10\}$ & $\{2,4,7\}$ & $\{2,5,7,9,11\}$ \\
+		\hline
+		$\{2,5,9,11\}$ & $\{2,4,6,10,12\}$ & $\{2,9,12\}$ \\
+		\hline
+		$\{2,4,6,10,14\}$ & $\{2,4,7,14\}$ & $\{2,5,7,9,11,14\}$ \\
+		\hline
+		$\{2,5,9,11,14\}$ & $\{2,4,6,10,12,14\}$ & $\{2,9,12,14\}$ \\
+		\hline
+		$\{2,5,7,9,11\}$ & $\{2,4,6,10,12,14\}$ & $\{2,9,12,14\}$ \\
+		\hline
+		$\{2,4,6,10,12\}$ & $\{2,4,7,14\}$ & $\{2,5,7,9,11,14\}$ \\
+		\hline
+		$\{2,5,7,9,11,14\}$ & $\{2,4,6,10,12,14\}$ & $\{2,9,12,14\}$ \\
+		\hline
+		$\{2,4,6,10,12,14\}$ & $\{2,4,7,14\}$ & $\{2,5,7,9,11,14\}$ \\
+		\hline
+		\end{tabular}
+		\end{center}
+	Минимизируем ДКА: \\
+	0 эквивалентность: \\ 
+		$\{1,2,\{2,4\},\{2,9\},\{2,4,7\},\{2,5,9\},\{2,4,10\},\{2,9,12\},\{2,4,6,10\},\{2,5,9,11\},\{2,5,7,9,11\},\\\{2,4,6,10,12\}\}$ \\ 
+		$\{\{2,4,7,14\},\{2,5,9,14\},\{2,4,10,14\},\{2,9,12,14\},\{2,4,6,10,14\},\{2,5,9,11,14\},\\\{2,5,7,9,11,14\},\{2,4,6,10,12,14\}\}$ \\
+	 
+	1 эквивалентность: \\
+		$\{1,2,\{2,4\},\{2,9\},\{2,5,9\},\{2,4,10\},\{2,4,6,10\},\{2,5,9,11\}\}$ \\
+		$\{\{2,4,7\},\{2,9,12\},\{2,5,7,9,11\},\{2,4,6,10,12\}\}$ \\
+		$\{\{2,4,7,14\},\{2,5,9,14\},\{2,4,10,14\},\{2,9,12,14\},\{2,4,6,10,14\},\{2,5,9,11,14\},\\\{2,5,7,9,11,14\},\{2,4,6,10,12,14\}\}$ \\
+	 
+	2 эквивалентность: \\
+		$\{1,2\}\ \{\{2,4\},\{2,4,10\}\}\ \{\{2,9\},\{2,5,9\}\}$ \\
+		$\{\{2,4,6,10\},\{2,5,9,11\}\}$ \\
+		$\{\{2,4,7\},\{2,9,12\},\{2,5,7,9,11\},\{2,4,6,10,12\}\}$ \\
+		$\{\{2,4,7,14\},\{2,5,9,14\},\{2,4,10,14\},\{2,9,12,14\},\{2,4,6,10,14\},\{2,5,9,11,14\},\\\{2,5,7,9,11,14\},\{2,4,6,10,12,14\}\}$ \\
+
+	3 эквивалентность: \\
+		$\{1\} = A$ \\
+	 	$\{2\} = B$ \\
+	 	$\{\{2,4\}\} = C$ \\
+	 	$\{\{2,4,10\}\} = D$ \\
+	 	$\{\{2,9\}\} = E$ \\
+		$\{\{2,5,9\}\} = F$ \\
+		$\{\{2,4,6,10\},\{2,5,9,11\}\} = G$ \\
+		$\{\{2,4,7\},\{2,9,12\},\{2,5,7,9,11\},\{2,4,6,10,12\}\} = H$ \\
+	 	$\{\{2,4,7,14\},\{2,5,9,14\},\{2,4,10,14\},\{2,9,12,14\},\{2,4,6,10,14\},\{2,5,9,11,14\},\\\{2,5,7,9,11,14\},\{2,4,6,10,12,14\}\} = I$ \\
+		
+	\begin{center}
+		\digraph{dot/p352}
+	\end{center}
+	
+	\section*{Задание 4. Определить является ли язык регулярным или нет}
+	$\boldsymbol{1.\ L=\{(aab)^nb(aba)^m \vert n \geq 0,\ m \geq 0\}}$ \\
+	Существует ДКА, распазнающий данный язык, следовательно язык является регулярным.
+	\begin{center}
+		\digraph{dot/p41}
+	\end{center}
+	
+	$\boldsymbol{2.\ L=\{uaav \vert u \in \{a,b\}^*,\ v \in \{a,b\}^*,\ |u|_b \geq |v|_a\}}$ \\
+	Фиксируем произвольное $n$. \\
+	$$\omega = b^{n-2}aaa^{n-2} \in L$$
+	$$x = b^{n-2}$$ 
+	$$y = aa$$  
+	$$z = a^n-2$$ 
+	$xy^kz \notin L,\ при k \geq 2 \implies $ язык $L$ не является регулярным. \\
+	
+	$\boldsymbol{3.\ L=\{a^m\omega \vert \omega \in \{a,b\}^*,\ 1 \leq |\omega|_b \leq m\}}$ \\
+	Рассмотрим дополнение к языку:
+	$$\overline{L} = \{a^m\omega \vert \in \{a,b\}^*, |\omega| > m\}$$
+	Фиксируем произвольное $n$. \\
+	$$\omega = a^nb^{n+1}$$
+	$$x = a^{n-1}$$
+	$$y = a$$
+	$$z = b^{n+1}$$
+	$xy^kz \notin \overline{L},\ при k \geq 2 \implies \overline{L}$ не является регулярным $\implies L$ не является регулярным.
+	
+	 $\boldsymbol{4.\ L = \{a^kb^ma^n \vert k=n \vee m > 0\}}$ \\
+	 Существует ДКА, распознающий данный язык, следовательно язык является регулярным.
+	 \begin{center}
+		\digraph{dot/p44}
+	\end{center}
+	
+	$\boldsymbol{5.\ L = \{ucv \vert u \in \{a,b\}^*,\ v \in \{a,b\}^*,\ u \neq v^R\}}$ \\
+	Рассмотрим дополнение к языку:
+	$$\overline{L} = \{ucv \vert u \in \{a,b\}^*,\ v \in \{a,b\}^*,\ u = v^R\}$$
+	Фиксируем произвольное $n$. \\
+	$$\omega = a^{\frac{n}{2}} b a^{\frac{n}{2}-1} c a^{\frac{n}{2}-1} b a^{\frac{n}{2}}$$
+	$$x = a^{\frac{n}{2}}ba^{\frac{n}{2}-2}$$
+	$$y = a$$
+	$$z = ca^{\frac{n}{2}-1}ba^{\frac{n}{2}}$$
+	$xy^kz \notin \overline{L},\ при k \geq 2 \implies \overline{L}$ не является регулярным $\implies L$ не является регулярным. 
+\end{document}
+
+

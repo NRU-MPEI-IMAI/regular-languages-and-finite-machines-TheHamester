@@ -1,0 +1,13 @@
+digraph {
+	rankdir=LR;
+	margin=0.2;
+	size=3.5;
+	node [margin=0 shape=circle];
+	t1[shape=doublecircle];
+	" "[color=white width=0];
+
+	" " -> q1;
+	q1 -> t1[label=c];
+	q1 -> q1[label="a,b"];
+	t1 -> t1[label="a,b"];
+}

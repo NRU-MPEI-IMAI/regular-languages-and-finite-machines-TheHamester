@@ -1,0 +1,26 @@
+digraph {
+	size=4;
+	margin=0.2;
+	rankdir=LR;
+	node [shape=circle];
+	t1,t2,t3[shape=doublecircle];
+	" "[color=white width=0];
+
+	" " -> q1;
+	q1 -> q2[label=b];
+	q1 -> q3[label=a];
+	q2 -> t1[label=b];
+	q2 -> q4[label=a];
+	q3 -> q4[label=b];
+	q3 -> q5[label=a];
+	q4 -> t2[label=b];
+	q4 -> q6[label=a];
+	q5 -> q6[label=b];
+	q6 -> t3[label=b];
+	t1 -> t2[label=a];
+	t1 -> t1[label=b];
+	t2 -> t3[label=a];
+	t2 -> t2[label=b];
+	t3 -> t3[label=b];
+	
+}

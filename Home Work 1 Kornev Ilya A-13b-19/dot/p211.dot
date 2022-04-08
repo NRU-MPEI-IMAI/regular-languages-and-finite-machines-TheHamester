@@ -1,0 +1,15 @@
+digraph {
+	rankdir=LR;
+	margin = 0.25;
+	node[shape=circle];
+	C[shape=doublecircle];
+	" "[color=white width=0];
+
+	" " -> A;
+	A -> B[label=a];
+	A -> A[label=b];
+	B -> C[label=a];
+	B -> B[label=b];
+	C -> C[label="a,b"];
+	
+}

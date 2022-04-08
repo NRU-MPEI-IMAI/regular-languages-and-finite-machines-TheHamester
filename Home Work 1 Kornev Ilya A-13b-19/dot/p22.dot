@@ -1,0 +1,22 @@
+digraph {
+	size = 5;
+	rankdir=LR;
+	margin = 0.05;
+	node[shape=circle];
+	DF[shape=doublecircle];
+	" "[color=white width=0];
+
+	" " -> AE;
+	AE -> BF[label="a,b"];
+	BF -> CG[label="a,b"];
+	CG -> DF[label="a,b"];
+	DF -> DG[label="a,b"];
+	DG -> DF[label="a,b"];
+	BE -> CF[label="a,b"];
+	CE -> DF[label="a,b"];
+	DE -> DF[label="a,b"];
+	AF -> BG[label="a,b"];
+	AG -> BF[label="a,b"];
+	BG -> CF[label="a,b"];
+	CF -> DG[label="a,b"];
+}
